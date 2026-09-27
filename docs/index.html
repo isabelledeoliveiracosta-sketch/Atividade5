@@ -1006,114 +1006,53 @@ Isabelle de Oliveira Costa (isabelle_costa@id.uff.br) <br> Ilídio do Nascimento
 </div>
 
 </section>
-<section>
-<section id="contexto" class="title-slide slide level1 center">
-<h1>Contexto</h1>
-
-</section>
 <section id="anova-clássica" class="slide level2">
 <h2>ANOVA clássica</h2>
-<p>A <strong>ANOVA (Análise de Variância)</strong> é utilizada para verificar se as médias de <em>três ou mais grupos</em> podem ser consideradas iguais.</p>
-<div class="box-red">
-<p>Temos como Hipótese de interesse:</p>
+<p>A ANOVA compara as médias de <span class="math inline">\(k\)</span> grupos.</p>
 <p><span class="math display">\[
 H_0:\mu_1=\mu_2=\cdots=\mu_k
 \]</span></p>
 <p>contra</p>
 <p><span class="math display">\[
-H_1:\text{pelo menos uma das médias é diferente}. \]</span></p>
-<p><span class="math display">\[ H_1: \mu_i \neq \mu_j \text{ para pelo menos um par } (i, j) \text{ com } i \neq j \]</span></p>
-</div>
-<p>A ideia é comparar a variabilidade <strong>entre os grupos</strong> com a variabilidade <strong>dentro dos grupos</strong>.</p>
-</section>
-<section id="variabilidade-total" class="slide level2">
-<h2>Variabilidade Total</h2>
-<p>A variabilidade total dos dados pode ser decomposta em:</p>
-<p><span class="math display">\[
-SQT = SQG + SQE
+H_1:\text{pelo menos uma média é diferente}.
 \]</span></p>
-<div class="box-blue">
-<ul>
-<li><strong>SQT</strong>: Soma dos Quadrados Total (variabilidade total dos dados)</li>
-<li><strong>SQG</strong>: Soma dos Quadrados dos Grupos / Entre grupos (variabilidade explicada pelos fatores)</li>
-<li><strong>SQE</strong>: Soma dos Quadrados dos Erros / Dentro dos grupos (variabilidade residual/aleatória)</li>
-</ul>
-</div>
-<p><span class="math display">\[
-SQ_T = SQ_{\text{Entre}} + SQ_{\text{Dentro}}
-\]</span></p>
-</section>
-<section id="decomposição-da-variabilidade" class="slide level2">
-<h2>Decomposição da Variabilidade</h2>
-<p>Onde:</p>
-<p><span class="math display">\[
-SQ_{\text{Entre}} = \sum_{i=1}^{k} n_i(\bar X_i - \bar X)^2
-\]</span></p>
-<p>Representa a variação entre as médias dos grupos e a média geral.</p>
-<p>Já:</p>
-<p><span class="math display">\[
-SQ_{\text{Dentro}} = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (X_{ij} - \bar X_i)^2
-\]</span></p>
-<p>Representa a variação entre os elementos de um mesmo grupo em torno da sua respectiva média.</p>
-</section>
-<section id="graus-de-liberdade" class="slide level2">
-<h2>Graus de Liberdade</h2>
-<p>Para cada soma de quadrados, podemos associar um número de graus de liberdade, correspondente ao número de parcelas “livres” em cada somatório:</p>
-<div class="box-blue">
-<p><strong>Soma dos Quadrados Totais (SQT):</strong> <span class="math display">\[ \sum^k_{i=1}\sum^{n_{i}}_{j=1}(X-\bar X)^2
-\]</span> Temos <em>n</em> parcelas no somatório, neste caso temos: <span class="math display">\[ (n-1) \text{ graus de liberdade} \]</span> Correspondentes à <span class="math display">\[ (n-1) \]</span> parcelas “livres” no somatório.</p>
-</div>
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
-<div class="box-blue">
-<p><strong>Soma dos quadrados dos Grupos (SQG):</strong> <span class="math display">\[
-SQ_{\text{Entre}} = \sum_{i=1}^{k} n_i(\bar X_i - \bar X)^2
-\]</span> <span class="math display">\[ \text{Seu grau de liberdade sera: }k-1 \]</span></p>
-</div>
-<div class="box-blue">
-<p><strong>Soma dos quadrados dos Erros (SQE):</strong> <span class="math display">\[SQ_{\text{Dentro}} = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (X_{ij} - \bar X_i)^2\]</span> <span class="math display">\[ \text{Seu grau de liberdade sera: }n-k \]</span></p>
-</div>
-</section>
-<section id="estatística-de-teste-da-anova" class="slide level2">
-<h2>Estatística de teste da ANOVA</h2>
-<p>A estatística da ANOVA é:</p>
-<p><span class="math display">\[
-F =
-\frac{MQG}
-{MQE} = \frac{MQ_\text{Dentro}}{MQ_\text{Entre}}
-\]</span></p>
-<p>Com:</p>
-<p><span class="math display">\[
-MQE
-=
-\frac{SQ_{\text{Entre}}}{k-1}
-\]</span></p>
-<p>e</p>
-<p><span class="math display">\[
-MQG
-=
-\frac{SQ_{\text{Dentro}}}{N-k}.
-\]</span></p>
-<p>Portanto:</p>
+<p>A ideia é comparar:</p>
 <p><span class="math display">\[
 \boxed{
-F=
-\frac{
-SQ_{\text{Entre}}/(k-1)
-}{
-SQ_{\text{Dentro}}/(N-k)
-}
+\text{Variabilidade ENTRE grupos}
+\quad\text{vs.}\quad
+\text{Variabilidade DENTRO dos grupos}
 }
 \]</span></p>
+<p>Se a variabilidade entre os grupos for suficientemente maior que a variabilidade dentro dos grupos, temos evidências contra <span class="math inline">\(H_0\)</span>.</p>
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section id="estatística-de-teste" class="slide level2">
+<h2>Estatística de Teste</h2>
+<p>A estatística de teste é:</p>
+<p><span class="math display">\[
+F=
+\frac{MQG}{MQE}
+=
+\frac{
+SQG/(k-1)
+}{
+SQE/(N-k)
+}.
+\]</span></p>
+<div class="box-blue">
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(SQG\)</span>: soma quadrática entre os grupos;</li>
+<li><span class="math inline">\(SQE\)</span>: soma quadrática dos erros ou dentro dos grupos.</li>
+<li><span class="math inline">\(MQE\)</span>: Média Quadrática Dentro dos Grupos</li>
+<li><span class="math inline">\(MQG\)</span>: Média Quadrática Entre os Grupos</li>
+</ul>
+</div>
 <p>Se <span class="math inline">\(H_0\)</span> for verdadeira, esperamos que as duas estimativas de variância sejam semelhantes e, portanto, <span class="math inline">\(F\)</span> esteja próximo de 1.</p>
 <p>Valores grandes de <span class="math inline">\(F\)</span> indicam que a variabilidade entre os grupos é grande em relação à variabilidade dentro dos grupos.</p>
 </section>
-<section id="suposições-da-anova-clássica" class="slide level2">
-<h2>Suposições da ANOVA clássica</h2>
+<section id="principais-suposições" class="slide level2">
+<h2>Principais suposições</h2>
 <p>Para a ANOVA clássica, consideramos principalmente:</p>
 <h3 id="independência">1. Independência</h3>
 <p>As observações devem ser independentes entre si.</p>
@@ -1131,79 +1070,33 @@ Y_{ij}\sim N(\mu_i,\sigma_i^2).
 \]</span></p>
 <p>ou seja, os grupos possuem a mesma variância populacional.</p>
 </section>
-<section id="onde-a-homogeneidade-é-utilizada" class="slide level2">
-<h2>Onde a homogeneidade é utilizada?</h2>
-<p>A ANOVA clássica utiliza uma <strong>única estimativa da variância dentro dos grupos</strong>:</p>
+<section id="onde-entra-a-homogeneidade" class="slide level2">
+<h2>Onde entra a homogeneidade?</h2>
+<p>A ANOVA clássica utiliza uma única estimativa da variância dos erros:</p>
 <p><span class="math display">\[
-MQ_{\text{Dentro}}
-\]</span></p>
-<p>Essa quantidade é obtida combinando a variabilidade observada nos diferentes grupos.</p>
-<p>Sob a hipótese:</p>
+MQE=\frac{SQE}{N-k}.
+\]</span> Essa quantidade é obtida combinando a variabilidade observada nos diferentes grupos.</p>
+<p>Sob a Hipótese:</p>
 <p><span class="math display">\[
-\sigma_1^2=\sigma_2^2=\cdots=\sigma_k^2=\sigma^2,
+\sigma_1^2=\sigma_2^2=\cdots=\sigma_k^2.
 \]</span></p>
-<p>é razoável utilizar uma única estimativa para essa variância:</p>
+<p>Assim, diferentes grupos compartilham uma mesma variância populacional de referência.</p>
+<h3 id="problema">Problema</h3>
+<p>Se:</p>
 <p><span class="math display">\[
-MQ_{\text{Dentro}}\approx\sigma^2
+\sigma_1^2\neq\sigma_2^2\neq\cdots\neq\sigma_k^2,
 \]</span></p>
-<p>Assim, a estatística</p>
-<p><span class="math display">\[
-F=
-\frac{MQ_{\text{Entre}}}{MQ_{\text{Dentro}}}
-\]</span></p>
-<p>utiliza uma <strong>variância residual comum</strong> no denominador.</p>
+<p>uma única estimativa pode não representar adequadamente a variabilidade de todos os grupos.</p>
 </section>
-<section id="o-problema-da-heterogeneidade-de-variâncias" class="slide level2">
-<h2>O problema da heterogeneidade de variâncias</h2>
-<p>Considere três grupos:</p>
+<section id="comparações-múltiplas-tukey" class="slide level2">
+<h2>Comparações múltiplas: Tukey</h2>
+<p>A ANOVA testa globalmente:</p>
 <p><span class="math display">\[
-\sigma_1^2 \neq \sigma_2^2 \neq \sigma_3^2.
+H_0:\mu_1=\cdots=\mu_k.
 \]</span></p>
-<p>Nesse caso, a variabilidade dos grupos não é a mesma.</p>
-<p>Um único:</p>
-<p><span class="math display">\[
-MQ_{\text{Dentro}}
-\]</span></p>
-<p>pode não representar adequadamente a incerteza de todos os grupos.</p>
-<p>O problema se torna especialmente relevante quando a diferença entre as variâncias é acompanhada por <strong>tamanhos amostrais diferentes</strong>.</p>
-</section>
-<section id="exemplo-conceitual" class="slide level2">
-<h2>Exemplo conceitual</h2>
-<p><span class="math display">\[
-\text{Grupo A}
-\quad
-s_A^2=1
-\]</span></p>
-<p><span class="math display">\[
-\text{Grupo B}
-\quad
-s_B^2=4
-\]</span></p>
-<p><span class="math display">\[
-\text{Grupo C}
-\quad
-s_C^2=16
-\]</span></p>
-<p>As precisões das médias são diferentes.</p>
-<p>A questão passa a ser:</p>
-<div class="box-red">
-<p>Como comparar as médias quando cada grupo possui uma variabilidade diferente.</p>
-</div>
-<p>É justamente esse problema que a ANOVA de Welch procura tratar.</p>
-</section>
-<section id="após-a-anova-teste-de-tukey" class="slide level2">
-<h2>Após a ANOVA: teste de Tukey</h2>
-<p>A ANOVA testa:</p>
-<p><span class="math display">\[
-H_0:\mu_1=\mu_2=\cdots=\mu_k.
-\]</span></p>
-<p>Quando rejeitamos <span class="math inline">\(H_0\)</span>, sabemos que <strong>nem todas as médias são iguais</strong>.</p>
-<p>Porém, ainda precisamos investigar quais pares de médias diferem.</p>
-<p>O teste de Tukey realiza comparações múltiplas entre os grupos.</p>
-</section>
-<section id="estatística-do-teste-de-tukey" class="slide level2">
-<h2>Estatística do teste de Tukey</h2>
-<p>Para comparar os grupos <span class="math inline">\(i\)</span> e <span class="math inline">\(j\)</span>, consideramos:</p>
+<p>Se houver evidência de diferença, queremos identificar quais médias diferem.</p>
+<p>O teste de Tukey compara os grupos dois a dois.</p>
+<p>Para os grupos <span class="math inline">\(i\)</span> e <span class="math inline">\(j\)</span>:</p>
 <p><span class="math display">\[
 q_{ij}
 =
@@ -1211,149 +1104,80 @@ q_{ij}
 |\bar X_i-\bar X_j|
 }{
 \sqrt{
-\frac{MS_{\text{Dentro}}}{2}
+\frac{MQE}{2}
 \left(
 \frac{1}{n_i}+\frac{1}{n_j}
 \right)
 }
 }.
 \]</span></p>
-<p>A decisão é baseada na <strong>distribuição do alcance studentizado</strong>.</p>
-<p>Para um nível de significância <span class="math inline">\(\alpha\)</span>, rejeitamos <span class="math inline">\(H_0\)</span> quando:</p>
+<p>O teste utiliza a distribuição do <strong>alcance studentizado</strong>.</p>
+<p>O ponto central:</p>
 <p><span class="math display">\[
-q_{ij}&gt;q_{\alpha;k,N-k}.
+\boxed{\text{Tukey utiliza }MQE\text{ como variância comum}}
 \]</span></p>
-<p>O ponto central é que o teste utiliza o mesmo:</p>
-<p><span class="math display">\[
-MQ_{\text{Dentro}}
-\]</span></p>
-<p>para todas as comparações.</p>
+<p>Ou seja, o mesmo problema da variância comum continua presente nas comparações múltiplas.</p>
 </section>
-<section id="tukey-caso-de-tamanhos-iguais" class="slide level2">
-<h2>Tukey: caso de tamanhos iguais</h2>
-<p>Se todos os grupos possuem o mesmo tamanho <span class="math inline">\(n\)</span>:</p>
-<p><span class="math display">\[
-n_1=n_2=\cdots=n_k=n,
-\]</span></p>
-<p>então:</p>
-<p><span class="math display">\[
-\frac{1}{n_i}+\frac{1}{n_j}
-=
-\frac{2}{n}.
-\]</span></p>
-<p>Logo:</p>
-<p><span class="math display">\[
-q_{ij}
-=
-\frac{
-|\bar X_i-\bar X_j|
-}{
-\sqrt{
-MQ_{\text{Dentro}}/n
-}
-}.
-\]</span></p>
-</section>
-<section id="limitação-em-presença-de-heterogeneidade" class="slide level2">
-<h2>Limitação em presença de heterogeneidade</h2>
-<p>O Tukey utiliza:</p>
-<p><span class="math display">\[
-MQ_{\text{Dentro}}
-\]</span></p>
-<p>como estimativa comum da variância residual.</p>
-<p>Isso é coerente com a hipótese:</p>
-<p><span class="math display">\[
-\sigma_1^2=\sigma_2^2=\cdots=\sigma_k^2.
-\]</span></p>
-<p>Quando as variâncias são diferentes:</p>
-<p><span class="math display">\[
-\sigma_i^2\neq\sigma_j^2,
-\]</span></p>
-<p>as comparações podem envolver níveis de incerteza diferentes.</p>
-<p>Portanto, surge a necessidade de procedimentos que <strong>não dependam da homogeneidade das variâncias</strong>.</p>
-</section></section>
 <section>
 <section id="a-anova-de-welch" class="title-slide slide level1 center">
 <h1>A ANOVA DE WELCH</h1>
 
 </section>
-<section id="por-que-modificar-a-anova-clássica" class="slide level2">
-<h2>Por que modificar a ANOVA clássica?</h2>
-<p>Na ANOVA clássica, assumimos:</p>
+<section id="o-que-muda" class="slide level2">
+<h2>O que muda?</h2>
+<p>A ANOVA de Welch mantém o mesmo objetivo:</p>
 <p><span class="math display">\[
-\sigma_1^2=\sigma_2^2=\cdots=\sigma_k^2.
+H_0:\mu_1=\mu_2=\cdots=\mu_k,
 \]</span></p>
-<p>Essa hipótese permite utilizar uma única estimativa da variância dos erros:</p>
-<p><span class="math display">\[
-MQ_E=\frac{SQE}{N-k}.
-\]</span></p>
-<p>Quando as variâncias são diferentes, essa estimativa comum pode não representar adequadamente a variabilidade de todos os grupos.</p>
-<p>A ANOVA de Welch modifica a estatística de teste para permitir:</p>
-<p><span class="math display">\[
-\boxed{
-\sigma_1^2\neq\sigma_2^2\neq\cdots\neq\sigma_k^2
-}
-\]</span></p>
-<div class="box-red">
-<p>A Welch não muda o objetivo da ANOVA. Ela muda a forma como a variabilidade é incorporada ao teste.</p>
+<p>mas <strong>não exige variâncias populacionais iguais</strong>.</p>
+<div class="box-purple">
+<p><strong>Comparação:</strong></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>ANOVA CLÁSSICA</strong></p>
+<ul>
+<li>Variância residual comum</li>
+<li><span class="math inline">\(MQE\)</span></li>
+<li><span class="math inline">\(gl_2=N-k\)</span></li>
+<li>Pressupõe homogeneidade</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>ANOVA de Welch</strong></p>
+<ul>
+<li>Variâncias individuais</li>
+<li><span class="math inline">\(s_i^2\)</span></li>
+<li><span class="math inline">\(gl_2\)</span> aproximado</li>
+<li>Não exige homogeneidade</li>
+</ul>
+</div></div>
 </div>
 </section>
-<section id="o-que-permanece-igual" class="slide level2">
-<h2>O que permanece igual?</h2>
-<p>A ANOVA de Welch continua testando:</p>
-<p><span class="math display">\[
-H_0:\mu_1=\mu_2=\cdots=\mu_k
-\]</span></p>
-<p>contra</p>
-<p><span class="math display">\[
-H_1:\text{pelo menos uma média é diferente}.
-\]</span></p>
-<p>Portanto, o objetivo continua sendo verificar se existe diferença entre as médias populacionais.</p>
-<p>O que muda é a forma de construir a estatística de teste.</p>
-<p><span class="math display">\[
+<section id="a-lógica-da-anova-de-welch" class="slide level2">
+<h2>A lógica da ANOVA de Welch</h2>
+<p>Em vez de tratar todos os grupos com uma única variância, a Welch considera a variabilidade de cada grupo.</p>
+<p>Para o grupo <span class="math inline">\(i\)</span>: <span class="math display">\[
 \boxed{
-\text{Mesmo objetivo}
-\quad+\quad
-\text{menor dependência da homogeneidade}
+w_i=\frac{n_i}{s_i^2}
 }
-\]</span></p>
-</section>
-<section id="a-ideia-central-pesos-diferentes" class="slide level2">
-<h2>A ideia central: pesos diferentes</h2>
-<p>Para cada grupo <span class="math inline">\(i\)</span>, definimos:</p>
-<p><span class="math display">\[
-w_i=\frac{n_i}{s_i^2},
 \]</span></p>
 <p>onde:</p>
 <ul>
-<li><span class="math inline">\(n_i\)</span> é o tamanho da amostra do grupo <span class="math inline">\(i\)</span>;</li>
-<li><span class="math inline">\(s_i^2\)</span> é a variância amostral do grupo <span class="math inline">\(i\)</span>.</li>
+<li><span class="math inline">\(n_i\)</span> = tamanho do grupo;</li>
+<li><span class="math inline">\(s_i^2\)</span> = variância amostral.</li>
 </ul>
-<p>Assim:</p>
-<p><span class="math display">\[
-\boxed{
-w_i\propto\frac{1}{s_i^2}
-}
-\]</span></p>
-<p>Um grupo com menor variância recebe maior peso.</p>
-<p>Um grupo com maior variância recebe menor peso.</p>
-<h3 id="intuição">Intuição</h3>
-<p><span class="math display">\[
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p>Portanto: <span class="math display">\[
 s_i^2 \uparrow
 \quad\Longrightarrow\quad
-w_i \downarrow
-\]</span></p>
-<p><span class="math display">\[
+w_i \downarrow \text{Quanto maior a variância, menor o peso}
+\]</span> e <span class="math display">\[
 s_i^2 \downarrow
 \quad\Longrightarrow\quad
-w_i \uparrow
-\]</span> ## Média ponderada</p>
-<p>Definimos a soma dos pesos:</p>
-<p><span class="math display">\[
-W=\sum_{i=1}^{k}w_i.
+w_i \uparrow \text{Quanto menor a variância, maior o peso}
 \]</span></p>
-<p>A média ponderada das médias amostrais é:</p>
-<p><span class="math display">\[
+<p>A média ponderada é: <span class="math display">\[
 \boxed{
 \bar X_w=
 \frac{
@@ -1363,72 +1187,19 @@ W=\sum_{i=1}^{k}w_i.
 }
 }
 \]</span></p>
-<p>ou, equivalentemente,</p>
-<p><span class="math display">\[
-\bar X_w=
-\frac{
-\sum_{i=1}^{k}w_i\bar X_i
-}{
-W
-}.
-\]</span></p>
-<p>A média <span class="math inline">\(\bar X_w\)</span> substitui a média geral da ANOVA clássica como referência para a construção da estatística de Welch.</p>
-</section>
-<section id="anova-clássica-welch" class="slide level2">
-<h2>ANOVA clássica × Welch</h2>
-<h3 id="anova-clássica-1">ANOVA clássica</h3>
-<p>A variância dos erros é estimada por:</p>
-<p><span class="math display">\[
-MS_E=\frac{SQE}{N-k}.
-\]</span></p>
-<p>A estatística é:</p>
-<p><span class="math display">\[
-F=
-\frac{
-SQG/(k-1)
-}{
-SQE/(N-k)
-}.
-\]</span></p>
-</section>
-<section class="slide level2">
-
-<h3 id="welch">Welch</h3>
-<p>Não utilizamos uma única estimativa comum da variância.</p>
-<p>Cada grupo possui seu próprio peso:</p>
-<p><span class="math display">\[
-w_i=\frac{n_i}{s_i^2}.
-\]</span></p>
-<p>A comparação passa a considerar simultaneamente:</p>
-<p><span class="math display">\[
-n_i
-\quad\text{e}\quad
-s_i^2.
-\]</span></p>
-<p><span class="math display">\[
-\boxed{
-\text{ANOVA clássica: variância comum}
-}
-\]</span></p>
-<p><span class="math display">\[
-\boxed{
-\text{Welch: variâncias específicas dos grupos}
-}
-\]</span></p>
+<p>Grupos com menor variabilidade contribuem mais para a média ponderada,pois fornecem estimativas mais precisas.</p>
 </section>
 <section id="estatística-de-welch" class="slide level2">
 <h2>Estatística de Welch</h2>
-<p>Definindo:</p>
-<p><span class="math display">\[
+<p>Definindo: <span class="math display">\[
 w_i=\frac{n_i}{s_i^2}
-\]</span></p>
-<p>e</p>
-<p><span class="math display">\[
+\qquad
+e
+\qquad
 W=\sum_{i=1}^{k}w_i,
 \]</span></p>
-<p>a estatística de Welch pode ser escrita como:</p>
+<p>a estatística de Welch é:</p>
 <p><span class="math display">\[
-\boxed{
 F_W=
 \frac{
 \displaystyle
@@ -1441,151 +1212,239 @@ w_i(\bar X_i-\bar X_w)^2
 \frac{2(k-2)}{k^2-1}
 \sum_{i=1}^{k}
 \frac{
-\left(1-\frac{w_i}{W}\right)^2
-}{
-n_i-1
-}
-}
-}
-\]</span></p>
-<p>onde:</p>
-<p><span class="math display">\[
-\bar X_w=
-\frac{
-\sum_{i=1}^{k}w_i\bar X_i
-}{
-W
-}.
-\]</span></p>
-</section>
-<section id="interpretando-a-estatística-de-welch" class="slide level2">
-<h2>Interpretando a estatística de Welch</h2>
-<p>O numerador considera a distância entre cada média de grupo e a média ponderada:</p>
-<p><span class="math display">\[
-\sum_{i=1}^{k}
-w_i(\bar X_i-\bar X_w)^2.
-\]</span></p>
-<p>Assim, diferenças entre médias de grupos mais precisos recebem maior peso.</p>
-<p>O denominador introduz uma correção relacionada à desigualdade das variâncias e aos tamanhos amostrais:</p>
-<p><span class="math display">\[
-1+
-\frac{2(k-2)}{k^2-1}
-\sum_{i=1}^{k}
-\frac{
 (1-w_i/W)^2
 }{
 n_i-1
+}
 }.
 \]</span></p>
-<p>A correção faz com que a estatística não dependa da hipótese de que existe uma única variância populacional comum a todos os grupos.</p>
+<p>A estatística é comparada a uma distribuição <span class="math inline">\(F\)</span> com graus de liberdade aproximados.</p>
 </section>
-<section id="graus-de-liberdade-1" class="slide level2">
+<section id="o-que-devemos-observar" class="slide level2">
+<h2>O que devemos observar?</h2>
+<p><span class="math display">\[
+\boxed{
+\text{As variâncias individuais aparecem por meio dos pesos }w_i
+}
+\]</span></p>
+<p>Não é necessário interpretar cada termo da expressão isoladamente. O ponto é que a variabilidade de cada grupo passa a participar explicitamente do cálculo.</p>
+</section>
+<section id="graus-de-liberdade" class="slide level2">
 <h2>Graus de liberdade</h2>
 <p>Na ANOVA clássica:</p>
 <p><span class="math display">\[
-df_1=k-1
+gl_1=k-1,
+\qquad
+gl_2=N-k.
 \]</span></p>
-<p>e</p>
+<p>Na Welch:</p>
 <p><span class="math display">\[
-df_2=N-k.
+gl_1=k-1,
 \]</span></p>
-<p>Na ANOVA de Welch, o primeiro grau de liberdade permanece:</p>
+<p>mas o segundo grau de liberdade é aproximado por:</p>
 <p><span class="math display">\[
-\boxed{df_1=k-1}
-\]</span></p>
-<p>mas o segundo é aproximado por:</p>
-<p><span class="math display">\[
-\boxed{
-df_2=
+gl_2=
 \frac{k^2-1}
 {
 3
 \displaystyle
 \sum_{i=1}^{k}
 \frac{
-\left(1-\frac{w_i}{W}\right)^2
+(1-w_i/W)^2
 }{
 n_i-1
 }
-}
-}
+}.
 \]</span></p>
-<p>Portanto:</p>
+<p>Portanto, em geral:</p>
+<p><span class="math display">\[
+\boxed{gl_2\neq N-k}
+\]</span></p>
+</section>
+<section id="duas-mudanças-principais" class="slide level2">
+<h2>Duas mudanças principais</h2>
 <p><span class="math display">\[
 \boxed{
-df_2\neq N-k
+\begin{array}{c}
+\text{Variâncias individuais}
+\downarrow\
+\text{pesos }w_i
+\end{array}
+}
+\qquad
+\boxed{
+\begin{array}{c}
+\text{Graus de liberdade}
+\downarrow\
+\text{aproximados}
+\end{array}
 }
 \]</span></p>
-<p>em geral.</p>
-<p>Os graus de liberdade do denominador passam a depender das variâncias e dos tamanhos amostrais dos grupos.</p>
-</section>
-<section id="distribuição-da-estatística-de-welch" class="slide level2">
-<h2>Distribuição da estatística de Welch</h2>
-<p>A estatística <span class="math inline">\(F_W\)</span> é comparada a uma distribuição <span class="math inline">\(F\)</span> com graus de liberdade aproximados:</p>
-<p><span class="math display">\[
-F_W
-\sim
-F_{k-1,\;df_2}.
-\]</span></p>
-<p>Assim, o valor-p é obtido a partir de:</p>
-<p><span class="math display">\[
-p=
-P\left(
-F_{k-1,df_2}\geq F_W
-\right).
-\]</span></p>
-<p>Para um nível de significância <span class="math inline">\(\alpha\)</span>:</p>
-<p><span class="math display">\[
-p&lt;\alpha
-\quad\Longrightarrow\quad
-\text{rejeitamos }H_0.
-\]</span></p>
-</section>
-<section id="o-que-mudou-na-anova-de-welch" class="slide level2">
-<h2>O que mudou na ANOVA de Welch?</h2>
-<h3 id="anova-clássica-2">ANOVA clássica</h3>
-<p><span class="math display">\[
-\sigma_1^2=\cdots=\sigma_k^2
-\]</span></p>
-<p>↓</p>
-<p>Uma variância residual comum</p>
-<p><span class="math display">\[
-MS_E=\frac{SQE}{N-k}
-\]</span></p>
-<p>↓</p>
-<p><span class="math display">\[
-F=
-\frac{SQG/(k-1)}
-{SQE/(N-k)}
-\]</span></p>
-</section>
-<section class="slide level2">
+</section></section>
+<section>
+<section id="o-teste-de-gameshowell" class="title-slide slide level1 center">
+<h1>O TESTE DE GAMES–HOWELL</h1>
 
-<h3 id="anova-de-welch">ANOVA de Welch</h3>
+</section>
+<section id="o-que-muda-em-relação-ao-tukey" class="slide level2">
+<h2>O que muda em relação ao Tukey?</h2>
+<p>O Tukey utiliza uma variância residual comum:</p>
 <p><span class="math display">\[
-\sigma_1^2,\ldots,\sigma_k^2
-\quad\text{podem ser diferentes}
+MQE.
 \]</span></p>
-<p>↓</p>
-<p>Pesos específicos:</p>
-<p><span class="math display">\[
-w_i=\frac{n_i}{s_i^2}
-\]</span></p>
-<p>↓</p>
-<p>Média ponderada:</p>
-<p><span class="math display">\[
-\bar X_w=
-\frac{\sum w_i\bar X_i}{\sum w_i}
-\]</span></p>
-<p>↓</p>
-<p>Estatística <span class="math inline">\(F_W\)</span> com correção</p>
-<p>↓</p>
-<p>Graus de liberdade aproximados.</p>
+<p>O Games–Howell leva a lógica da Welch para as comparações par a par.</p>
+<p>Comparação direta</p>
 <p><span class="math display">\[
 \boxed{
-\text{Welch substitui a variância comum por uma abordagem ponderada}
+\text{Tukey}
+\quad\longrightarrow\quad
+MQE
 }
 \]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{Games--Howell}
+\quad\longrightarrow\quad
+s_i^2;s_j^2
+}
+\]</span></p>
+<p>Para comparar os grupos <span class="math inline">\(i\)</span> e <span class="math inline">\(j\)</span>, utiliza:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{s_i^2}{n_i}
++
+\frac{s_j^2}{n_j}
+}
+\]</span></p>
+<p>no cálculo da incerteza da diferença entre as médias.</p>
+<p>Assim, cada comparação possui sua própria medida de variabilidade.</p>
+</section>
+<section id="gameshowell" class="slide level2">
+<h2>Games–Howell</h2>
+<p>Para comparar os grupos <span class="math inline">\(i\)</span> e <span class="math inline">\(j\)</span>:</p>
+<p><span class="math display">\[
+q_{ij}
+=
+\frac{
+|\bar X_i-\bar X_j|
+}{
+\sqrt{
+\frac{1}{2}
+\left(
+\frac{s_i^2}{n_i}
++
+\frac{s_j^2}{n_j}
+\right)
+}
+}.
+\]</span></p>
+<p>Além disso, utiliza graus de liberdade aproximados:</p>
+<p><span class="math display">\[
+\nu_{ij}
+=
+\frac{
+\left(
+\frac{s_i^2}{n_i}
++
+\frac{s_j^2}{n_j}
+\right)^2
+}{
+\frac{(s_i^2/n_i)^2}{n_i-1}
++
+\frac{(s_j^2/n_j)^2}{n_j-1}
+}.
+\]</span></p>
+</section>
+<section id="a-diferença-fundamental" class="slide level2">
+<h2>A diferença fundamental</h2>
+<p><span class="math display">\[
+\boxed{
+MQE
+\quad\longrightarrow\quad
+\frac{s_i^2}{n_i}+\frac{s_j^2}{n_j}
+}
+\]</span></p>
+<p>Tukey: uma medida de variância comum.</p>
+<p>Games–Howell: variabilidade específica dos grupos comparados.</p>
+</section>
+<section id="da-anova-clássica-ao-gameshowell" class="slide level2">
+<h2>Da ANOVA clássica ao Games–Howell</h2>
+<h3 id="anova-clássica-1">ANOVA clássica</h3>
+<p><span class="math display">\[
+\text{Variância comum}
+\rightarrow
+MQE
+\rightarrow
+F
+\]</span></p>
+<h3 id="welch">Welch</h3>
+<p><span class="math display">\[
+\text{Variâncias diferentes}
+\rightarrow
+w_i=\frac{n_i}{s_i^2}
+\rightarrow
+F_W
+\]</span></p>
+<h3 id="tukey">Tukey</h3>
+<p><span class="math display">\[
+\text{Comparações múltiplas}
++
+\text{variância comum}
+\]</span></p>
+<h3 id="gameshowell-1">Games–Howell</h3>
+<p><span class="math display">\[
+\text{Comparações múltiplas}
++
+\text{variâncias específicas}
+\]</span></p>
+<p><span class="math display">\[
+\boxed{
+\text{A Welch e o Games--Howell adaptam a análise para a
+heterogeneidade das variâncias.}
+}
+\]</span></p>
+</section></section>
+<section>
+<section id="síntese" class="title-slide slide level1 center">
+<h1>Síntese</h1>
+
+</section>
+<section id="a-lógica-pode-ser-resumida-em-duas-adaptações" class="slide level2">
+<h2>A lógica pode ser resumida em duas adaptações:</h2>
+<h3 id="teste-global">Teste global</h3>
+<p><span class="math display">\[
+\boxed{
+\text{ANOVA clássica}
+\quad\longrightarrow\quad
+\text{Welch}
+}
+\]</span></p>
+<p><span class="math display">\[
+\text{variância comum}
+\quad\longrightarrow\quad
+\text{variâncias individuais}
+\]</span></p>
+<h3 id="comparações-múltiplas">Comparações múltiplas</h3>
+<p><span class="math display">\[
+\boxed{
+\text{Tukey}
+\quad\longrightarrow\quad
+\text{Games--Howell}
+}
+\]</span></p>
+<p><span class="math display">\[
+\text{variância comum}
+\quad\longrightarrow\quad
+\text{variâncias específicas}
+\]</span></p>
+<h3 id="mensagem-principal">Mensagem principal</h3>
+<p><span class="math display">\[
+\boxed{
+\text{A pergunta não muda. A forma de medir a incerteza muda.}
+}
+\]</span></p>
+<p>Welch adapta o teste global.</p>
+<p>Games–Howell adapta as comparações múltiplas.</p>
 
 </section></section>
     </div>
